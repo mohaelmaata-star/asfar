@@ -1,0 +1,406 @@
+/* ==========================================================================
+   THE VIEW RABAT — site vitrine, inspiré structurellement de Basil Club
+   (hero 3D léger + sections modulaires) mais avec un habillage propre.
+   ========================================================================== */
+
+:root{
+    --gold: #c9a24a;
+    --gold-light: #e8cf8f;
+    --ink: #0c0d10;
+    --charcoal: #14161b;
+    --cream: #f5f1e7;
+    --cream-dim: #cfc9ba;
+    --rose: #b56a52;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Poppins', Arial, sans-serif;
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+    margin: 0;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+img{ max-width: 100%; display: block; }
+a{ text-decoration: none; color: inherit; }
+h1,h2,h3{ font-family: var(--font-serif); font-weight: 600; margin: 0; }
+p{ margin: 0; }
+
+.section-eyebrow{
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+.section-title{ font-size: 40px; color: var(--cream); }
+.section-head{ text-align: center; max-width: 640px; margin: 0 auto 50px; padding: 0 20px; }
+
+/* scroll reveal */
+.reveal{ opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.in{ opacity: 1; transform: translateY(0); }
+/* a direct link/refresh landing mid-page (e.g. #rooms) can beat the JS observer's
+   first callback; :target has no such race since it's resolved during style calc. */
+section:target .reveal{ opacity: 1; transform: translateY(0); }
+
+.btn-gold, .btn-ghost{
+    display: inline-block;
+    padding: 14px 30px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all .25s ease;
+}
+.btn-gold{ background: var(--gold); color: var(--ink); font-weight: 600; }
+.btn-gold:hover{ background: var(--gold-light); }
+.btn-ghost{ border: 1px solid rgba(245,241,231,.5); color: var(--cream); }
+.btn-ghost:hover{ border-color: var(--gold); color: var(--gold); }
+
+/* ==========================================================================
+   LOADING SCREEN
+   ========================================================================== */
+.loading-screen{
+    position: fixed;
+    inset: 0;
+    background: var(--ink);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loading-screen.hide{ display: none; }
+.loading-inner{ text-align: center; width: 220px; }
+.loading-logo{ width: 90px; margin: 0 auto 24px; filter: brightness(0) invert(1); opacity: .9; }
+.loading-bar{ width: 100%; height: 2px; background: rgba(245,241,231,.15); }
+.loading-bar-fill{ height: 100%; width: 0%; background: var(--gold); transition: width .2s ease; }
+.loading-percent{ margin-top: 12px; font-size: 12px; letter-spacing: 2px; color: var(--cream-dim); }
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.site-header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    transition: background .3s ease, box-shadow .3s ease;
+}
+.site-header.solid{ background: rgba(12,13,16,.92); box-shadow: 0 2px 20px rgba(0,0,0,.3); backdrop-filter: blur(6px); }
+.header-inner{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 22px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.brand{ display: flex; align-items: baseline; gap: 6px; font-family: var(--font-serif); }
+.brand-the{ font-size: 13px; letter-spacing: 3px; color: var(--cream-dim); }
+.brand-view{ font-size: 22px; letter-spacing: 4px; color: var(--cream); font-weight: 600; }
+.brand-city{ font-size: 13px; letter-spacing: 3px; color: var(--gold); }
+
+.nav-toggle{
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 8px;
+}
+.nav-toggle span{ width: 24px; height: 1.5px; background: var(--cream); }
+
+.nav-menu{ display: flex; align-items: center; gap: 32px; }
+.nav-menu a{
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    transition: color .2s;
+}
+.nav-menu a:hover{ color: var(--gold); }
+.btn-book{
+    border: 1px solid var(--gold);
+    color: var(--gold) !important;
+    padding: 10px 20px;
+}
+.btn-book:hover{ background: var(--gold); color: var(--ink) !important; }
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero{
+    position: relative;
+    height: 100vh;
+    min-height: 620px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.hero-sky{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(ellipse at 50% 30%, #3a2a3a 0%, #1c1220 35%, #0c0d10 75%),
+                linear-gradient(180deg, #4a2e35 0%, #1c1220 40%, #0c0d10 100%);
+}
+#hero3d{
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.hero-content{
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    margin-left: 8%;
+    padding: 0 20px;
+}
+.hero-eyebrow{
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+}
+.hero-title{
+    font-size: 58px;
+    line-height: 1.15;
+    color: var(--cream);
+    text-shadow: 0 4px 30px rgba(0,0,0,.5);
+    margin-bottom: 22px;
+}
+.hero-sub{
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--cream-dim);
+    margin-bottom: 34px;
+    max-width: 480px;
+}
+.hero-actions{ display: flex; gap: 18px; flex-wrap: wrap; }
+.hero-hint{
+    position: absolute;
+    bottom: 100px;
+    right: 6%;
+    z-index: 2;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    opacity: .7;
+}
+.scroll-cue{
+    position: absolute;
+    bottom: 34px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: var(--cream-dim);
+    font-size: 18px;
+    animation: bob 2s ease-in-out infinite;
+}
+@keyframes bob{ 0%,100%{ transform: translate(-50%,0); } 50%{ transform: translate(-50%,8px); } }
+
+/* ==========================================================================
+   INTRO / STATS
+   ========================================================================== */
+.intro{ padding: 110px 20px; background: var(--charcoal); }
+.intro-inner{ max-width: 900px; margin: 0 auto; text-align: center; }
+.intro-text{
+    font-family: var(--font-serif);
+    font-size: 26px;
+    line-height: 1.6;
+    color: var(--cream);
+    margin-bottom: 60px;
+}
+.intro-stats{ display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
+.stat{ display: flex; flex-direction: column; align-items: center; }
+.stat-num{ font-family: var(--font-serif); font-size: 48px; color: var(--gold); }
+.stat-label{ font-size: 12px; letter-spacing: 1px; color: var(--cream-dim); margin-top: 8px; max-width: 160px; }
+
+/* ==========================================================================
+   ROOMS
+   ========================================================================== */
+.rooms{ padding: 110px 20px; max-width: 1280px; margin: 0 auto; }
+.room-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.room-card{ background: var(--charcoal); overflow: hidden; }
+.room-img{ height: 260px; overflow: hidden; }
+.room-img img{ width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.room-card:hover .room-img img{ transform: scale(1.06); }
+.room-body{ padding: 26px 24px 30px; }
+.room-body h3{ font-size: 24px; color: var(--cream); margin-bottom: 12px; }
+.room-body p{ font-size: 14px; line-height: 1.7; color: var(--cream-dim); }
+
+/* ==========================================================================
+   DINING
+   ========================================================================== */
+.dining{ padding: 110px 20px; max-width: 1280px; margin: 0 auto; }
+.dining-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.dining-card{ position: relative; height: 380px; overflow: hidden; }
+.dining-card:first-child, .dining-card:nth-child(2){ grid-row: span 1; }
+.dining-card img{ width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.dining-card:hover img{ transform: scale(1.08); }
+.dining-overlay{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+    background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.1) 60%);
+}
+.dining-overlay h3{ font-size: 24px; color: var(--cream); margin-bottom: 8px; }
+.dining-overlay p{ font-size: 13px; line-height: 1.6; color: var(--cream-dim); }
+
+/* ==========================================================================
+   WELLNESS / EVENTS (media + text split)
+   ========================================================================== */
+.wellness, .events{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    min-height: 480px;
+}
+.events{ direction: rtl; }
+.events > *{ direction: ltr; }
+.wellness-media img, .events-media img{ width: 100%; height: 100%; object-fit: cover; display: block; min-height: 320px; }
+.wellness-body, .events-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 8%;
+    background: var(--charcoal);
+}
+.wellness-body p:not(.section-eyebrow), .events-body p:not(.section-eyebrow){
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--cream-dim);
+    margin: 20px 0 30px;
+    max-width: 420px;
+}
+
+/* ==========================================================================
+   OFFERS
+   ========================================================================== */
+.offers{ padding: 110px 20px; max-width: 1280px; margin: 0 auto; }
+.offers-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.offer-card{ background: var(--charcoal); overflow: hidden; }
+.offer-card img{ width: 100%; height: 160px; object-fit: cover; }
+.offer-card-text{ display: flex; align-items: center; min-height: 100%; }
+.offer-body{ padding: 22px; }
+.offer-body h3{ font-size: 18px; color: var(--cream); margin-bottom: 10px; }
+.offer-body p{ font-size: 13px; line-height: 1.6; color: var(--cream-dim); }
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+.contact{ padding: 110px 20px; background: var(--charcoal); }
+.contact-inner{
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+.contact-list{ list-style: none; margin: 26px 0 34px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.contact-list li{ font-size: 15px; color: var(--cream-dim); }
+.contact-list i{ color: var(--gold); width: 20px; }
+.contact-list a{ color: var(--cream-dim); }
+.contact-list a:hover{ color: var(--gold); }
+.contact-map img{ width: 100%; height: 340px; object-fit: cover; }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer{ background: var(--ink); border-top: 1px solid rgba(245,241,231,.08); padding: 50px 20px 30px; }
+.footer-inner{
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+.footer-brand{ display: flex; align-items: baseline; gap: 6px; }
+.footer-sisters{ display: flex; gap: 16px; align-items: center; font-size: 13px; color: var(--cream-dim); flex-wrap: wrap; }
+.footer-sisters a{ color: var(--cream-dim); border-bottom: 1px solid transparent; }
+.footer-sisters a:hover{ color: var(--gold); border-color: var(--gold); }
+.footer-social{ display: flex; gap: 14px; }
+.footer-social a{
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(245,241,231,.2);
+    border-radius: 50%;
+    color: var(--cream-dim);
+    transition: all .2s;
+}
+.footer-social a:hover{ border-color: var(--gold); color: var(--gold); }
+.footer-bottom{ width: 100%; text-align: center; font-size: 11px; color: rgba(207,201,186,.5); margin-top: 20px; letter-spacing: .5px; }
+
+/* ==========================================================================
+   GO TO TOP
+   ========================================================================== */
+#gotoTop{
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--ink);
+    border: 0;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all .25s;
+    z-index: 400;
+}
+#gotoTop.show{ opacity: 1; visibility: visible; transform: translateY(0); }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 992px){
+    .room-grid{ grid-template-columns: repeat(2, 1fr); }
+    .dining-grid{ grid-template-columns: repeat(2, 1fr); }
+    .offers-grid{ grid-template-columns: repeat(2, 1fr); }
+    .wellness, .events{ grid-template-columns: 1fr; }
+    .contact-inner{ grid-template-columns: 1fr; }
+    .hero-title{ font-size: 44px; }
+}
+
+@media (max-width: 768px){
+    .nav-toggle{ display: flex; }
+    .nav-menu{
+        display: none;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        background: rgba(12,13,16,.97);
+        padding: 10px 30px 26px;
+        gap: 4px;
+    }
+    .nav-menu.open{ display: flex; }
+    .nav-menu a{ padding: 12px 0; border-bottom: 1px solid rgba(245,241,231,.08); }
+    .btn-book{ margin-top: 10px; text-align: center; }
+    .hero-content{ margin-left: 0; text-align: center; padding: 0 24px; }
+    .hero-actions{ justify-content: center; }
+    .hero-sub{ margin-left: auto; margin-right: auto; }
+    .hero-title{ font-size: 34px; }
+    .hero-hint{ display: none; }
+    .room-grid, .dining-grid, .offers-grid{ grid-template-columns: 1fr; }
+    .intro-stats{ gap: 40px; }
+    .footer-inner{ flex-direction: column; text-align: center; }
+}

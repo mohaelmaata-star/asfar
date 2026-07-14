@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The View Rabat — L'Expérience Ultime, Magnifiée par la Vue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<!-- ============ LOADING SCREEN ============ -->
+<div id="loadingScreen" class="loading-screen">
+    <div class="loading-inner">
+        <img src="assets/images/hotel/logo.png" alt="The View Hotels" class="loading-logo">
+        <div class="loading-bar"><div class="loading-bar-fill" id="loadingBarFill"></div></div>
+        <div class="loading-percent" id="loadingPercent">0%</div>
+    </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+    <div class="header-inner">
+        <a href="#hero" class="brand">
+            <span class="brand-the">THE</span>
+            <span class="brand-view">VIEW</span>
+            <span class="brand-city">RABAT</span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="#rooms">Chambres &amp; Suites</a>
+            <a href="#dining">Restaurants &amp; Bars</a>
+            <a href="#wellness">Wellness</a>
+            <a href="#events">Événements</a>
+            <a href="#offers">Offres</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="btn-book">Réserver</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+    <canvas id="hero3d"></canvas>
+    <div class="hero-sky"></div>
+    <div class="hero-content">
+        <p class="hero-eyebrow">Hay Riad — Rabat</p>
+        <h1 class="hero-title">L'Expérience Ultime,<br>Magnifiée par la Vue</h1>
+        <p class="hero-sub">Au sommet d'une tour de 17 étages, The View Rabat transforme l'énergie de la capitale en une infinité d'expériences.</p>
+        <div class="hero-actions">
+            <a href="#contact" class="btn-gold">Réserver votre séjour</a>
+            <a href="#rooms" class="btn-ghost">Découvrir les chambres</a>
+        </div>
+    </div>
+    <div class="hero-hint">
+        <span>Faites glisser pour explorer</span>
+    </div>
+    <a href="#intro" class="scroll-cue" aria-label="Défiler">
+        <i class="fas fa-chevron-down"></i>
+    </a>
+</section>
+
+<!-- ============ INTRO / STATS ============ -->
+<section class="intro" id="intro">
+    <div class="intro-inner">
+        <p class="intro-text reveal">
+            Perché au cœur du quartier d'affaires et résidentiel de Hay Riad, The View Rabat capte l'énergie
+            de la capitale marocaine et la métamorphose en une infinité d'expériences — entre lumière, gastronomie
+            et panoramas à couper le souffle.
+        </p>
+        <div class="intro-stats">
+            <div class="stat reveal">
+                <span class="stat-num">17</span>
+                <span class="stat-label">Étages panoramiques</span>
+            </div>
+            <div class="stat reveal">
+                <span class="stat-num">6</span>
+                <span class="stat-label">Catégories de chambres &amp; suites</span>
+            </div>
+            <div class="stat reveal">
+                <span class="stat-num">5</span>
+                <span class="stat-label">Restaurants &amp; bars signature</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ ROOMS & SUITES ============ -->
+<section class="rooms" id="rooms">
+    <div class="section-head reveal">
+        <p class="section-eyebrow">Séjourner</p>
+        <h2 class="section-title">Chambres &amp; Suites</h2>
+    </div>
+
+    <div class="room-grid">
+        <article class="room-card reveal">
+            <div class="room-img"><img src="assets/images/rooms/cosy.png" alt="Chambre Cosy"></div>
+            <div class="room-body">
+                <h3>Chambre Cosy</h3>
+                <p>Un cocon baigné de lumière où la ville se découvre en douceur. Teintes apaisantes, textures délicates, espace pensé pour le confort et l'intimité — chaque détail invite à ralentir et savourer l'instant.</p>
+            </div>
+        </article>
+
+        <article class="room-card reveal">
+            <div class="room-img"><img src="assets/images/rooms/signature.png" alt="Chambre Signature"></div>
+            <div class="room-body">
+                <h3>Chambre Signature</h3>
+                <p>Une parenthèse où le confort rencontre un chic minimaliste. Dans un décor subtil, l'espace se déploie autour d'une vue à couper le souffle. Une invitation à rêver plus haut.</p>
+            </div>
+        </article>
+
+        <article class="room-card reveal">
+            <div class="room-img"><img src="assets/images/rooms/skyline.jpg" alt="Chambre Skyline"></div>
+            <div class="room-body">
+                <h3>Chambre Skyline</h3>
+                <p>Depuis ses larges baies vitrées, Rabat se déploie en panorama, changeant au gré du jour et de la nuit. Confort absolu, design fluide, lumière omniprésente.</p>
+            </div>
+        </article>
+
+        <article class="room-card reveal">
+            <div class="room-img"><img src="assets/images/rooms/suite-junior.png" alt="Suite Junior"></div>
+            <div class="room-body">
+                <h3>Suite Junior</h3>
+                <p>Vue impressionnante sur le très actif quartier Hay Riad. Un grand salon aux lignes contemporaines, une Moroccan touch discrète dans les teintes épicées, une chambre séparée pour toute l'intimité attendue.</p>
+            </div>
+        </article>
+
+        <article class="room-card reveal">
+            <div class="room-img"><img src="assets/images/rooms/royal-rooftop.png" alt="Suite Royal Rooftop"></div>
+            <div class="room-body">
+                <h3>Suite Royal Rooftop</h3>
+                <p>Notre suite la plus exclusive, avec accès privilégié au rooftop de l'hôtel — pensée pour une expérience hors du commun, entre raffinement et vue imprenable sur la capitale.</p>
+            </div>
+        </article>
+
+        <article class="room-card reveal">
+            <div class="room-img"><img src="assets/images/rooms/penthouse.jpg" alt="La Penthouse"></div>
+            <div class="room-body">
+                <h3>La Penthouse</h3>
+                <p>L'apogée, le clou du spectacle. Nichée au sommet, la Penthouse domine la ville. Ici, le luxe ne se raconte pas, il se vit.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- ============ DINING ============ -->
+<section class="dining" id="dining">
+    <div class="section-head reveal">
+        <p class="section-eyebrow">Savourer</p>
+        <h2 class="section-title">Restaurants &amp; Bars</h2>
+    </div>
+
+    <div class="dining-grid">
+        <article class="dining-card reveal">
+            <img src="assets/images/dining/le-v.png" alt="Le V Restaurant">
+            <div class="dining-overlay">
+                <h3>Le V Restaurant</h3>
+                <p>Cuisine méditerranéenne et petits-déjeuners sur-mesure avec « Les Ateliers du Matin » — options gluten-free et vegan.</p>
+            </div>
+        </article>
+
+        <article class="dining-card reveal">
+            <img src="assets/images/dining/buddha-bar.png" alt="Buddha-Bar">
+            <div class="dining-overlay">
+                <h3>Buddha-Bar</h3>
+                <p>Gastronomie asiatique fusion — inspirations japonaises, péruviennes et thaïlandaises, animations en soirée.</p>
+            </div>
+        </article>
+
+        <article class="dining-card reveal">
+            <img src="assets/images/dining/secret8.png" alt="Secret 8 by Buddha Bar">
+            <div class="dining-overlay">
+                <h3>Secret 8 by Buddha Bar</h3>
+                <p>Bar à cocktails signature sur le rooftop, entre créations exclusives et vue imprenable sur la ville.</p>
+            </div>
+        </article>
+
+        <article class="dining-card reveal">
+            <img src="assets/images/dining/chay-lounge.png" alt="Chay Lounge">
+            <div class="dining-overlay">
+                <h3>Chay Lounge</h3>
+                <p>Salon de thé à l'atmosphère intimiste, avec sa pâtisserie signature « La Ghriba Signature ».</p>
+            </div>
+        </article>
+
+        <article class="dining-card reveal">
+            <img src="assets/images/dining/cicchetti.png" alt="Cicchetti">
+            <div class="dining-overlay">
+                <h3>Cicchetti</h3>
+                <p>Trattoria italienne aux saveurs méditerranéennes. Déjeuner 12h–16h, dîner 19h–23h, réservation conseillée.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- ============ WELLNESS ============ -->
+<section class="wellness" id="wellness">
+    <div class="wellness-media reveal">
+        <img src="assets/images/hotel/wellness.png" alt="The View Wellness">
+    </div>
+    <div class="wellness-body reveal">
+        <p class="section-eyebrow">Se ressourcer</p>
+        <h2 class="section-title">The View Wellness</h2>
+        <p>Hammam, piscine intérieure et soins spa mêlant techniques traditionnelles et contemporaines — une parenthèse de bien-être au sommet de la ville.</p>
+        <a href="#contact" class="btn-ghost">En savoir plus</a>
+    </div>
+</section>
+
+<!-- ============ EVENTS / FORUM ============ -->
+<section class="events" id="events">
+    <div class="events-body reveal">
+        <p class="section-eyebrow">Organiser</p>
+        <h2 class="section-title">The View Forum</h2>
+        <p>Des espaces de conférence et de réunion pensés pour l'excellence — pour vos événements d'affaires comme pour vos réceptions privées, avec la même vue qui a fait la signature de l'hôtel.</p>
+        <a href="#contact" class="btn-ghost">Demander un devis</a>
+    </div>
+    <div class="events-media reveal">
+        <img src="assets/images/hotel/forum.png" alt="The View Forum">
+    </div>
+</section>
+
+<!-- ============ OFFERS ============ -->
+<section class="offers" id="offers">
+    <div class="section-head reveal">
+        <p class="section-eyebrow">Profiter</p>
+        <h2 class="section-title">Offres &amp; Séjours</h2>
+    </div>
+    <div class="offers-grid">
+        <article class="offer-card reveal">
+            <img src="assets/images/offers/golf.jpg" alt="Package Golf">
+            <div class="offer-body">
+                <h3>Package Golf — 3 Nuits</h3>
+                <p>Séjour d'exception incluant l'accès au parcours de Golf Dar Essalam.</p>
+            </div>
+        </article>
+        <article class="offer-card offer-card-text reveal">
+            <div class="offer-body">
+                <h3>Séjour longue durée</h3>
+                <p>Profitez de tarifs préférentiels pour vos séjours prolongés à Rabat.</p>
+            </div>
+        </article>
+        <article class="offer-card offer-card-text reveal">
+            <div class="offer-body">
+                <h3>Offre de bienvenue — 10%</h3>
+                <p>Découvrez nos chambres rénovées et bénéficiez de -10% sur votre réservation.</p>
+            </div>
+        </article>
+        <article class="offer-card offer-card-text reveal">
+            <div class="offer-body">
+                <h3>Nuit Buddha Bar</h3>
+                <p>Une expérience gastronomique et musicale signée Buddha-Bar, incluse dans votre séjour.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- ============ CONTACT / LOCATION ============ -->
+<section class="contact" id="contact">
+    <div class="contact-inner">
+        <div class="contact-info reveal">
+            <p class="section-eyebrow">Nous trouver</p>
+            <h2 class="section-title">The View Rabat</h2>
+            <ul class="contact-list">
+                <li><i class="fas fa-map-marker-alt"></i> Avenue Ennakhil, Hay Riad, Rabat, Maroc</li>
+                <li><i class="fas fa-phone"></i> <a href="tel:+212529080102">+212 529 080 102</a></li>
+                <li><i class="fas fa-envelope"></i> <a href="mailto:resa@theviewhotels.com">resa@theviewhotels.com</a></li>
+            </ul>
+            <a href="mailto:resa@theviewhotels.com" class="btn-gold">Réserver votre séjour</a>
+        </div>
+        <div class="contact-map reveal">
+            <img src="assets/images/hotel/tv19.jpg" alt="The View Rabat">
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="brand-the">THE</span>
+            <span class="brand-view">VIEW</span>
+            <span class="brand-city">RABAT</span>
+        </div>
+
+        <div class="footer-sisters">
+            <span>Nos autres adresses :</span>
+            <a href="#">The View Bouznika</a>
+            <a href="#">The View Agadir</a>
+        </div>
+
+        <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 The View Rabat — Groupe EXPERIENCIAH. Tous droits réservés.</span>
+        </div>
+    </div>
+</footer>
+
+<button id="gotoTop" aria-label="Retour en haut"><i class="fas fa-chevron-up"></i></button>
+
+<script src="assets/js/main.js"></script>
+<script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
+<script src="assets/js/hero3d.js"></script>
+</body>
+</html>
